@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv)
 {
-	if(argc==1)
+	if(argc!=4)
 	{
 		printf("\n\nHello!!!\n\tUse: %s [thread_count] [rows matrix 1] [colums matrix 1=rows matrix 2] [colums matrix 2]\n\n\n",argv[0]);
 	}
