@@ -1,113 +1,47 @@
-root@laptito:~/Desktop/git/omp-matrix-mult# /usr/bin/time -v ./matrix 4 8000 8000 8
-Matrix Memory in Use:		244.6 MB
-Number of Multiplications:	512000000
-Number of Sums:			511936000
-	Command being timed: "./matrix 4 8000 8000 8"
-	Percent of CPU this job got: 336%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.43
-	Maximum resident set size (kbytes): 252596
-	Minor (reclaiming a frame) page faults: 62777
-	Voluntary context switches: 5
-	Involuntary context switches: 2556
-root@laptito:~/Desktop/git/omp-matrix-mult# /usr/bin/time -v ./matrix 4 8000000 8 8
-Matrix Memory in Use:		488.3 MB
-Number of Multiplications:	512000000
-Number of Sums:			448000000
-	Command being timed: "./matrix 4 8000000 8 8"
-	Percent of CPU this job got: 259%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.93
-	Maximum resident set size (kbytes): 689232
-	Minor (reclaiming a frame) page faults: 171957
-	Voluntary context switches: 6
-	Involuntary context switches: 2739
-root@laptito:~/Desktop/git/omp-matrix-mult# /usr/bin/time -v ./matrix 4 8 8000000 8
-Matrix Memory in Use:		488.3 MB
-Number of Multiplications:	512000000
-Number of Sums:			511999936
-	Command being timed: "./matrix 4 8 8000000 8"
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:21.84
-	Maximum resident set size (kbytes): 595580
-	Minor (reclaiming a frame) page faults: 148523
-	Voluntary context switches: 5
-	Involuntary context switches: 5824
+# perf stat -e LLC-loads,LLC-load-misses ./matrix 4 8000000 8 8
+	Matrix Memory in Use:		488.3 MB
+	Number of Multiplications:	512000000
+	Number of Sums:			448000000
+		Command being timed: "./matrix 4 8000000 8 8"
+		Percent of CPU this job got: 259%
+		Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.93
+		Maximum resident set size (kbytes): 689232
+		Minor (reclaiming a frame) page faults: 171957
+		Voluntary context switches: 6
+		Involuntary context switches: 2739
+	 Performance counter stats for './matrix 4 8000000 8 8':
+		16,628,452      LLC-loads                                                   
+		 1,824,572      LLC-load-misses           #   10.97% of all LL-cache hits   
+	      11.982911626 seconds time elapsed
 
-root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e LLC-loads,LLC-load-misses ./matrix 4 8000000 8 8
-Matrix Memory in Use:		488.3 MB
-Number of Multiplications:	512000000
-Number of Sums:			448000000
 
- Performance counter stats for './matrix 4 8000000 8 8':
+#perf stat -e LLC-loads,LLC-load-misses ./matrix 4 8 8000000 8
+	Matrix Memory in Use:		488.3 MB
+	Number of Multiplications:	512000000
+	Number of Sums:			511999936
+		Command being timed: "./matrix 4 8 8000000 8"
+		Elapsed (wall clock) time (h:mm:ss or m:ss): 0:21.84
+		Maximum resident set size (kbytes): 595580
+		Minor (reclaiming a frame) page faults: 148523
+		Voluntary context switches: 5
+		Involuntary context switches: 5824
+	 Performance counter stats for './matrix 4 8 8000000 8':
+	       468,658,580      LLC-loads                                                   
+		91,885,358      LLC-load-misses           #   19.61% of all LL-cache hits   
+	      22.424981377 seconds time elapsed
 
-        16,628,452      LLC-loads                                                   
-         1,824,572      LLC-load-misses           #   10.97% of all LL-cache hits   
-
-      11.982911626 seconds time elapsed
-
-root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e LLC-loads,LLC-load-misses ./matrix 4 8 8000000 8
-Matrix Memory in Use:		488.3 MB
-Number of Multiplications:	512000000
-Number of Sums:			511999936
-
- Performance counter stats for './matrix 4 8 8000000 8':
-
-       468,658,580      LLC-loads                                                   
-        91,885,358      LLC-load-misses           #   19.61% of all LL-cache hits   
-
-      22.424981377 seconds time elapsed
-
-root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e LLC-loads,LLC-load-misses ./matrix 4 8000 8000 8
-Matrix Memory in Use:		244.6 MB
-Number of Multiplications:	512000000
-Number of Sums:			511936000
-
- Performance counter stats for './matrix 4 8000 8000 8':
-
-       305,220,963      LLC-loads                                                   
-         3,921,442      LLC-load-misses           #    1.28% of all LL-cache hits   
-
-       8.520734221 seconds time elapsed
-
-root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e cache-references,cache-misses,LLC-loads,LLC-load-misses ./matrix 4 8000 8000 8
-Matrix Memory in Use:		244.6 MB
-Number of Multiplications:	512000000
-Number of Sums:			511936000
-
- Performance counter stats for './matrix 4 8000 8000 8':
-
-       268,964,984      cache-references                                              (50.01%)
-         5,307,968      cache-misses              #    1.973 % of all cache refs      (50.00%)
-       262,889,110      LLC-loads                                                     (49.99%)
-         4,087,252      LLC-load-misses           #    1.55% of all LL-cache hits     (50.01%)
-
-       8.562587628 seconds time elapsed
-
-root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e cache-references,cache-misses,LLC-loads,LLC-load-misses ./matrix 4 8000000 8 8
-Matrix Memory in Use:		488.3 MB
-Number of Multiplications:	512000000
-Number of Sums:			448000000
-
- Performance counter stats for './matrix 4 8000000 8 8':
-
-        23,539,767      cache-references                                              (50.03%)
-         3,513,000      cache-misses              #   14.924 % of all cache refs      (49.98%)
-        16,492,963      LLC-loads                                                     (49.99%)
-         1,864,640      LLC-load-misses           #   11.31% of all LL-cache hits     (50.03%)
-
-      12.050373222 seconds time elapsed
-
-root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e cache-references,cache-misses,LLC-loads,LLC-load-misses ./matrix 4 8 8000000 8
-Matrix Memory in Use:		488.3 MB
-Number of Multiplications:	512000000
-Number of Sums:			511999936
-
- Performance counter stats for './matrix 4 8 8000000 8':
-
-       531,267,611      cache-references                                              (49.97%)
-       111,776,140      cache-misses              #   21.040 % of all cache refs      (50.01%)
-       467,732,532      LLC-loads                                                     (50.03%)
-        91,703,078      LLC-load-misses           #   19.61% of all LL-cache hits     (50.00%)
-
-      21.926168625 seconds time elapsed
-
-root@laptito:~/Desktop/git/omp-matrix-mult# 
-
+#perf stat -e LLC-loads,LLC-load-misses ./matrix 4 8000 8000 8
+	Matrix Memory in Use:		244.6 MB
+	Number of Multiplications:	512000000
+	Number of Sums:			511936000
+		Command being timed: "./matrix 4 8000 8000 8"
+		Percent of CPU this job got: 336%
+		Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.43
+		Maximum resident set size (kbytes): 252596
+		Minor (reclaiming a frame) page faults: 62777
+		Voluntary context switches: 5
+		Involuntary context switches: 2556
+	 Performance counter stats for './matrix 4 8000 8000 8':
+	       305,220,963      LLC-loads                                                   
+		 3,921,442      LLC-load-misses           #    1.28% of all LL-cache hits   
+	       8.520734221 seconds time elapsed
