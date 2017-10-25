@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 
 		printf("Total Memory in Use:\t\t%.1f MB\n", (float)(sizeof(int)*(a*b+b*c+a*c))/1048576.0);
 		printf("Number of Multiplications:\t%lu\n", a*b*c);
-		printf("Number of Sums:\t\t\t%lu\n",a*b*(c-1));
+		printf("Number of Sums:\t\t\t%lu\n",a*c*(b-1));
 		#pragma omp parallel for num_threads(thread_count) default(none) private(i,j,k) shared(A,B,C,a,b,c)
 			for(i=0;i<a;i++)
 				for(j=0;j<c;j++)
