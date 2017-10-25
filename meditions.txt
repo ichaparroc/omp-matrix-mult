@@ -1,5 +1,5 @@
 root@laptito:~/Desktop/git/omp-matrix-mult# /usr/bin/time -v ./matrix 4 8000 8000 8
-Total Memory in Use:		244.6 MB
+Matrix Memory in Use:		244.6 MB
 Number of Multiplications:	512000000
 Number of Sums:			511936000
 	Command being timed: "./matrix 4 8000 8000 8"
@@ -10,7 +10,7 @@ Number of Sums:			511936000
 	Voluntary context switches: 5
 	Involuntary context switches: 2556
 root@laptito:~/Desktop/git/omp-matrix-mult# /usr/bin/time -v ./matrix 4 8000000 8 8
-Total Memory in Use:		488.3 MB
+Matrix Memory in Use:		488.3 MB
 Number of Multiplications:	512000000
 Number of Sums:			448000000
 	Command being timed: "./matrix 4 8000000 8 8"
@@ -21,7 +21,7 @@ Number of Sums:			448000000
 	Voluntary context switches: 6
 	Involuntary context switches: 2739
 root@laptito:~/Desktop/git/omp-matrix-mult# /usr/bin/time -v ./matrix 4 8 8000000 8
-Total Memory in Use:		488.3 MB
+Matrix Memory in Use:		488.3 MB
 Number of Multiplications:	512000000
 Number of Sums:			511999936
 	Command being timed: "./matrix 4 8 8000000 8"
@@ -32,7 +32,7 @@ Number of Sums:			511999936
 	Involuntary context switches: 5824
 
 root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e LLC-loads,LLC-load-misses ./matrix 4 8000000 8 8
-Total Memory in Use:		488.3 MB
+Matrix Memory in Use:		488.3 MB
 Number of Multiplications:	512000000
 Number of Sums:			448000000
 
@@ -44,7 +44,7 @@ Number of Sums:			448000000
       11.982911626 seconds time elapsed
 
 root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e LLC-loads,LLC-load-misses ./matrix 4 8 8000000 8
-Total Memory in Use:		488.3 MB
+Matrix Memory in Use:		488.3 MB
 Number of Multiplications:	512000000
 Number of Sums:			511999936
 
@@ -56,7 +56,7 @@ Number of Sums:			511999936
       22.424981377 seconds time elapsed
 
 root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e LLC-loads,LLC-load-misses ./matrix 4 8000 8000 8
-Total Memory in Use:		244.6 MB
+Matrix Memory in Use:		244.6 MB
 Number of Multiplications:	512000000
 Number of Sums:			511936000
 
@@ -68,7 +68,7 @@ Number of Sums:			511936000
        8.520734221 seconds time elapsed
 
 root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e cache-references,cache-misses,LLC-loads,LLC-load-misses ./matrix 4 8000 8000 8
-Total Memory in Use:		244.6 MB
+Matrix Memory in Use:		244.6 MB
 Number of Multiplications:	512000000
 Number of Sums:			511936000
 
@@ -82,7 +82,7 @@ Number of Sums:			511936000
        8.562587628 seconds time elapsed
 
 root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e cache-references,cache-misses,LLC-loads,LLC-load-misses ./matrix 4 8000000 8 8
-Total Memory in Use:		488.3 MB
+Matrix Memory in Use:		488.3 MB
 Number of Multiplications:	512000000
 Number of Sums:			448000000
 
@@ -96,7 +96,7 @@ Number of Sums:			448000000
       12.050373222 seconds time elapsed
 
 root@laptito:~/Desktop/git/omp-matrix-mult# perf stat -e cache-references,cache-misses,LLC-loads,LLC-load-misses ./matrix 4 8 8000000 8
-Total Memory in Use:		488.3 MB
+Matrix Memory in Use:		488.3 MB
 Number of Multiplications:	512000000
 Number of Sums:			511999936
 
