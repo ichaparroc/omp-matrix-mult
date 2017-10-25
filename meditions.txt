@@ -20,6 +20,7 @@
 	Number of Multiplications:	512000000
 	Number of Sums:			511999936
 		Command being timed: "./matrix 4 8 8000000 8"
+		Percent of CPU this job got: 301%
 		Elapsed (wall clock) time (h:mm:ss or m:ss): 0:21.84
 		Maximum resident set size (kbytes): 595580
 		Minor (reclaiming a frame) page faults: 148523
