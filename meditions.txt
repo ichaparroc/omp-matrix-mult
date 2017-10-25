@@ -30,6 +30,7 @@
 		91,885,358      LLC-load-misses           #   19.61% of all LL-cache hits   
 	      22.424981377 seconds time elapsed
 
+
 #perf stat -e LLC-loads,LLC-load-misses ./matrix 4 8000 8000 8
 	Matrix Memory in Use:		244.6 MB
 	Number of Multiplications:	512000000
