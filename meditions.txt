@@ -47,3 +47,19 @@
 	       305,220,963      LLC-loads                                                   
 		 3,921,442      LLC-load-misses           #    1.28% of all LL-cache hits   
 	       8.520734221 seconds time elapsed
+
+
+	Experimento 1	Experimento 2	Experimento 3
+Hilos	4	4	4
+Matriz A	8000000x8	8x8000000	8000x8000
+Matriz B	8x8	8000000x8	8000x8
+Matriz Multiplicación	8000000x8	8x8	8x8
+Multiplicaciones	512000000	512000000	512000000
+Sumas	448000000	511999936	511936000
+Memoria para Matrices (MB)	488.3	488.3	244.6
+Porcentaje de CPU (%)	259	301	336
+Tiempo (s)	11.93	21.84	8.43
+Memoria necesitada	673	581.6	246.7
+LLC-loads	16628452	468658580	305220963
+LLC-loads-misses	1824572	91885358	3921442
+Porcentaje de cache-miss (%)	10.97	19.61	1.28
