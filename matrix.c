@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv)
 {
-	if(argc!=4)
+	if(argc!=5)
 	{
 		printf("\n\nHello!!!\n\tUse: %s [thread_count] [rows matrix 1] [colums matrix 1=rows matrix 2] [colums matrix 2]\n\n\n",argv[0]);
 	}
@@ -38,6 +38,9 @@ int main(int argc, char **argv)
       			B[i][j]=(i%2)+(j%2)+1;
   		}
 
+		printf("Total Memory in Use:\t\t%.1f MB\n", (float)(sizeof(int)*(a*b+b*c+a*c))/1048576.0);
+		printf("Number of Multiplications:\t%lu\n", a*b*c);
+		printf("Number of Sums:\t\t\t%lu\n",a*b*(c-1));
 		#pragma omp parallel for num_threads(thread_count) default(none) private(i,j,k) shared(A,B,C,a,b,c)
 			for(i=0;i<a;i++)
 				for(j=0;j<c;j++)
